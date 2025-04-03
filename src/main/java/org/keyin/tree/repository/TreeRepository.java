@@ -1,6 +1,7 @@
-package org.keyin.tree;
+package org.keyin.tree.repository;
 
 
+import org.keyin.tree.model.Tree;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import org.springframework.stereotype.Repository;

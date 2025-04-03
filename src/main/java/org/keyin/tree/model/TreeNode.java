@@ -1,4 +1,4 @@
-package org.keyin.tree;
+package org.keyin.tree.model;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,9 @@
-package org.keyin.tree;
+package org.keyin.tree.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.keyin.tree.model.Tree;
+import org.keyin.tree.model.TreeNode;
+import org.keyin.tree.repository.TreeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
