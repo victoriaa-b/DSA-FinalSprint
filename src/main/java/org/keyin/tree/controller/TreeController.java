@@ -23,6 +23,12 @@ public class TreeController {
         this.treeService = treeService;
     }
 
+    @GetMapping("/")
+    public String showIndexPage() {
+        return "index"; // Serve the index.html page
+    }
+
+
     @GetMapping("/enter-numbers")
     public String showEnterNumbersPage() {
         return "enter-numbers";

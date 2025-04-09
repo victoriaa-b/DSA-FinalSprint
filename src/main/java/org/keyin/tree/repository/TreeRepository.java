@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TreeRepository extends JpaRepository<Tree, Long> {
-    List<Tree> findAllByID();
+    List<Tree> findAll();
     // double check
 }

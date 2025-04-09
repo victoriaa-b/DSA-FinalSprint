@@ -8,13 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
 @Table(name = "trees")
-@Getter // use lombok to do most of the getters and setters
-@Setter // so cool
 public class Tree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +31,27 @@ public class Tree {
         this.treeStructure = treeStructure;
     }
 
+    // Getter and Setter - lombok not working
+    public Long getId() {
+        return id;
+    }
+
+    public String getInputNum() {
+        return inputNum;
+    }
+
+    public String getTreeStructure() {
+        return treeStructure;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setInputNum(String inputNum) {
+        this.inputNum = inputNum;
+    }
+
+    public void setTreeStructure(String treeStructure) {
+        this.treeStructure = treeStructure;
+    }
 }

@@ -16,32 +16,31 @@ import java.util.TreeSet;
 public class TreeService {
 
     private final TreeRepository treeRepository;
-    // double check the mapper to ensure it works
-    private final ObjectMapper objectmapper; // should make converting to json easier
+    private final ObjectMapper objectMapper;
 
     @Autowired
-    public TreeService(TreeRepository treeRepository, ObjectMapper objectmapper){
+    public TreeService(TreeRepository treeRepository, ObjectMapper objectMapper) {
         this.treeRepository = treeRepository;
-        this.objectmapper = objectmapper;
+        this.objectMapper = objectMapper;
     }
 
     // save tree records
-    // save input numbers
     public Tree saveTree(String inputNum, TreeNode treeNode) throws Exception {
-        String treeJSON = objectmapper.writeValueAsString(treeNode);
+        String treeJSON = objectMapper.writeValueAsString(treeNode);
         Tree tree = new Tree(inputNum, treeJSON);
         return treeRepository.save(tree);
     }
 
+    // convert tree structure from JSON to TreeNode
     public TreeNode remakeTree(String treeJSON) throws Exception {
-        return objectmapper.readValue(treeJSON, TreeNode.class);
+        return objectMapper.readValue(treeJSON, TreeNode.class);
     }
 
-    // create tree from a list of int
-    private  List<Integer> parseNum(String numbers){
+    // parse a string of numbers and convert to a list of integers
+    private List<Integer> parseNum(String numbers) {
         List<Integer> answer = new ArrayList<>();
 
-        if (numbers == null || numbers.trim().isEmpty()){
+        if (numbers == null || numbers.trim().isEmpty()) {
             return answer;
         }
         String[] elements = numbers.split(",");
@@ -49,13 +48,15 @@ public class TreeService {
         for (String element : elements) {
             try {
                 answer.add(Integer.parseInt(element.trim()));
-            } catch (NumberFormatException error){
-                // maybe add message
+            } catch (NumberFormatException error) {
+                // Log the error with System.out.println
+                System.out.println("Invalid number format: " + element.trim() + " - " + error.getMessage());
             }
         }
         return answer;
     }
 
+    // create a Binary Search Tree from a list of numbers
     public TreeNode createBSTree(String numbers) {
         List<Integer> numList = parseNum(numbers);
 
@@ -70,12 +71,12 @@ public class TreeService {
         return root;
     }
 
-    // get all of the trees
+    // get all of the trees from the database
     public List<Tree> getAllTrees() {
         return treeRepository.findAll();
     }
 
-    // BONUS: balanced tree to the user
+    // BONUS: create a balanced Binary Search Tree
     public TreeNode createBalBSTree(String numbers) {
         Set<Integer> sortedNumbers = new TreeSet<>(parseNum(numbers));
         if (sortedNumbers.isEmpty()) {
@@ -84,6 +85,7 @@ public class TreeService {
         return buildBalBST(new ArrayList<>(sortedNumbers), 0, sortedNumbers.size() - 1);
     }
 
+    // helper method to build a balanced BST recursively
     private TreeNode buildBalBST(List<Integer> sortedNumbers, int start, int end) {
         if (start > end) {
             return null;
@@ -96,5 +98,5 @@ public class TreeService {
 
         return node;
     }
-
 }
+

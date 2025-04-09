@@ -1,10 +1,5 @@
 package org.keyin.tree.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class TreeNode {
 
     private int value;
@@ -20,7 +15,28 @@ public class TreeNode {
         this.right = null;
     }
 
-    // Insert method
+    // Getters and setters for the fields
+    public int getValue() {
+        return value;
+    }
+
+    public TreeNode getLeft() {
+        return left;
+    }
+
+    public TreeNode getRight() {
+        return right;
+    }
+
+    public void setLeft(TreeNode left) {
+        this.left = left;
+    }
+
+    public void setRight(TreeNode right) {
+        this.right = right;
+    }
+
+    // Insert method to insert a value into the tree
     public void insert(int value) {
         if (value < this.value) {
             if (left == null) {
@@ -34,7 +50,6 @@ public class TreeNode {
             } else {
                 right.insert(value);
             }
-            // maybe add message about failure
         }
     }
 }

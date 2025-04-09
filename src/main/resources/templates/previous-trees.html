@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Previous Trees</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<h2>Previous Trees</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Input Numbers</th>
+        <th>Tree Structure</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="record : ${records}">
+        <td th:text="${record.inputNumbers}"></td>
+        <td th:text="${record.treeStructure}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/enter-numbers">Enter New Tree</a>
+</body>
+</html>
