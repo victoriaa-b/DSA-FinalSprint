@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Service
 public class TreeService {
@@ -31,6 +33,10 @@ public class TreeService {
         return treeRepository.save(tree);
     }
 
+    public TreeNode remakeTree(String treeJSON) throws Exception {
+        return objectmapper.readValue(treeJSON, TreeNode.class);
+    }
+
     // create tree from a list of int
     private  List<Integer> parseNum(String numbers){
         List<Integer> answer = new ArrayList<>();
@@ -38,7 +44,6 @@ public class TreeService {
         if (numbers == null || numbers.trim().isEmpty()){
             return answer;
         }
-
         String[] elements = numbers.split(",");
 
         for (String element : elements) {
@@ -50,7 +55,46 @@ public class TreeService {
         }
         return answer;
     }
+
+    public TreeNode createBSTree(String numbers) {
+        List<Integer> numList = parseNum(numbers);
+
+        if (numList.isEmpty()) {
+            return null;
+        }
+        TreeNode root = new TreeNode(numList.remove(0));
+
+        for (int num : numList) {
+            root.insert(num);
+        }
+        return root;
+    }
+
     // get all of the trees
+    public List<Tree> getAllTrees() {
+        return treeRepository.findAll();
+    }
+
     // BONUS: balanced tree to the user
+    public TreeNode createBalBSTree(String numbers) {
+        Set<Integer> sortedNumbers = new TreeSet<>(parseNum(numbers));
+        if (sortedNumbers.isEmpty()) {
+            return null;
+        }
+        return buildBalBST(new ArrayList<>(sortedNumbers), 0, sortedNumbers.size() - 1);
+    }
+
+    private TreeNode buildBalBST(List<Integer> sortedNumbers, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+
+        int mid = (start + end) / 2;
+        TreeNode node = new TreeNode(sortedNumbers.get(mid));
+        node.setLeft(buildBalBST(sortedNumbers, start, mid - 1));
+        node.setRight(buildBalBST(sortedNumbers, mid + 1, end));
+
+        return node;
+    }
 
 }
