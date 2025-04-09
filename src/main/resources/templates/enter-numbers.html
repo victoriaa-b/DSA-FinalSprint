@@ -2,16 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Enter Numbers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-<h2>Enter Numbers to Create Binary Search Tree</h2>
-<form action="/process-numbers" method="post">
-    <label for="numbers">Numbers (comma separated):</label>
-    <input type="text" id="numbers" name="numbers" required />
-    <button type="submit">Submit</button>
+<h1>Enter Numbers to Create a Binary Search Tree</h1>
+
+<form th:action="@{/process-numbers}" method="post">
+    <label for="numbers">Enter Numbers (Ex. 1, 2, 3):</label>
+    <input type="text" id="numbers" name="numbers" required>
+
+    <div class="checkbox-container">
+        <input type="checkbox" id="balanced" name="balanced" value="true">
+        <label for="balanced">Create a balanced tree</label>
+    </div>
+
+    <button type="submit">Create</button>
 </form>
-<a href="/previous-trees">Show Previous Trees</a>
+
+<p><a th:href="@{/}">Home</a></p>
 </body>
 </html>

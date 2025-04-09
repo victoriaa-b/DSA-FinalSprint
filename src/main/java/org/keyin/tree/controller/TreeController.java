@@ -52,6 +52,7 @@ public class TreeController {
                 return ResponseEntity.badRequest().body("No valid numbers provided");
             }
 
+
             treeService.saveTree(numbers, treeNode);
             Map<String, Object> response = new HashMap<>();
             response.put("tree", treeNode);

@@ -2,25 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Previous Trees</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-<h2>Previous Trees</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Input Numbers</th>
-        <th>Tree Structure</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="record : ${records}">
-        <td th:text="${record.inputNumbers}"></td>
-        <td th:text="${record.treeStructure}"></td>
-    </tr>
-    </tbody>
-</table>
-<a href="/enter-numbers">Enter New Tree</a>
+<h1>Previous Binary Search Trees</h1>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Input Numbers</th>
+            <th>Tree Structure</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tree : ${trees}">
+            <td th:text="${tree.id}"></td>
+            <td th:text="${tree.inputNum}"></td>
+            <td th:text="${tree.treeStructure}"></td>
+            <td>
+                <a th:href="@{/api/trees/{id}(id=${tree.id})}">View Tree</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<p><a th:href="@{/}">Back to Home</a></p>
 </body>
 </html>
