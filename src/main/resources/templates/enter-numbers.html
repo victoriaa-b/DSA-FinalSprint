@@ -5,20 +5,22 @@
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-<h1>Enter Numbers to Create a Binary Search Tree</h1>
+<h1>Enter Numbers to Create a Binary Tree</h1>
 
-<form th:action="@{/process-numbers}" method="post">
-    <label for="numbers">Enter Numbers (Ex. 1, 2, 3):</label>
-    <input type="text" id="numbers" name="numbers" required>
+<div class="form-container">
+    <form th:action="@{/process-numbers}" method="post">
+        <label for="numbers">Enter Numbers (Ex. 1, 2, 3):</label>
+        <input type="text" id="numbers" name="numbers" required>
 
-    <div class="checkbox-container">
-        <input type="checkbox" id="balanced" name="balanced" value="true">
-        <label for="balanced">Create a balanced tree</label>
-    </div>
+        <div class="checkbox-container">
+            <label for="balanced">Do you want to create a balanced tree?</label>
+            <input type="checkbox" id="balanced" name="balanced" value="true">
+        </div>
 
-    <button type="submit">Create</button>
-</form>
+        <button type="submit" class="submit-button">Create</button>
+    </form>
+</div>
 
-<p><a th:href="@{/}">Home</a></p>
+<p><a th:href="@{/}" class="button-link">Home</a></p>
 </body>
 </html>
