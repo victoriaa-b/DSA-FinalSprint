@@ -5,11 +5,31 @@
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-<h1>Welcome to the Binary Search Tree Application</h1>
+<h1>Welcome to the Binary Search Tree Application!</h1>
 
-<p><a th:href="@{/enter-numbers}"> Enter Numbers</a></p>
+<div class="punBox" id="punBox"></div>
 
-<p><a th:href="@{/previous-trees}">View previously created trees</a></p>
+<script>
+    const punsDisplay = [
+       "This tree doesn't bark, but it does search fast.",
+       "Life’s a binary choice — left or right!",
+       "This application really knows how to make split decisions.",
+       "Binary Trees: Where direction truly matters."
+    ];
+
+    function showRandomPun() {
+        const pun = punsDisplay[Math.floor(Math.random() * punsDisplay.length)];
+        document.getElementById('punBox').innerText = pun;
+    }
+
+    showRandomPun();
+    setInterval(showRandomPun, 6000);
+</script>
+<div class="button-container">
+    <a th:href="@{/enter-numbers}" class="button-link">Enter Numbers</a>
+    <a th:href="@{/previous-trees}" class="button-link">View Previously Created Trees</a>
+</div>
+
 
 </body>
 </html>
