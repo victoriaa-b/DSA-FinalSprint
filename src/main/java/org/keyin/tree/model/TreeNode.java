@@ -15,7 +15,7 @@ public class TreeNode {
         this.right = null;
     }
 
-    // Getters and setters for the fields
+    // Getters and setters
     public int getValue() {
         return value;
     }
@@ -36,7 +36,7 @@ public class TreeNode {
         this.right = right;
     }
 
-    // Insert method to insert a value into the tree
+    // Insert method
     public void insert(int value) {
         if (value < this.value) {
             if (left == null) {

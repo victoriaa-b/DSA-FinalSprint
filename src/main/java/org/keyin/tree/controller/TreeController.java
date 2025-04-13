@@ -25,7 +25,7 @@ public class TreeController {
 
     @GetMapping("/")
     public String showIndexPage() {
-        return "index"; // Serve the index.html page
+        return "index";
     }
 
 
@@ -59,8 +59,8 @@ public class TreeController {
             response.put("inputNumbers", numbers);
 
             return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error processing numbers: " + e.getMessage());
+        } catch (Exception error) {
+            return ResponseEntity.badRequest().body("Error processing numbers: " + error.getMessage());
         }
     }
 
@@ -86,14 +86,14 @@ public class TreeController {
                             response.put("inputNumbers", tree.getInputNum());
 
                             return ResponseEntity.ok(response);
-                        } catch (Exception e) {
+                        } catch (Exception error) {
                             return ResponseEntity.badRequest()
-                                    .body("Error reconstructing tree: " + e.getMessage());
+                                    .body("Error making tree: " + error.getMessage());
                         }
                     })
                     .orElse(ResponseEntity.notFound().build());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error retrieving tree: " + e.getMessage());
+        } catch (Exception error) {
+            return ResponseEntity.badRequest().body("Error finding tree: " + error.getMessage());
         }
     }
 

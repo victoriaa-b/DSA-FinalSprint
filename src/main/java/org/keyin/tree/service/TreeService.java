@@ -36,7 +36,6 @@ public class TreeService {
         return objectMapper.readValue(treeJSON, TreeNode.class);
     }
 
-    // parse a string of numbers and convert to a list of integers
     private List<Integer> parseNum(String numbers) {
         List<Integer> answer = new ArrayList<>();
 
@@ -49,8 +48,8 @@ public class TreeService {
             try {
                 answer.add(Integer.parseInt(element.trim()));
             } catch (NumberFormatException error) {
-                // Log the error with System.out.println
-                System.out.println("Invalid number format: " + element.trim() + " - " + error.getMessage());
+
+                System.out.println("Invalid format: " + element.trim() + " - " + error.getMessage());
             }
         }
         return answer;
@@ -76,6 +75,11 @@ public class TreeService {
         return treeRepository.findAll();
     }
 
+
+
+
+
+
     // BONUS: create a balanced Binary Search Tree
     public TreeNode createBalBSTree(String numbers) {
         Set<Integer> sortedNumbers = new TreeSet<>(parseNum(numbers));
@@ -85,7 +89,7 @@ public class TreeService {
         return buildBalBST(new ArrayList<>(sortedNumbers), 0, sortedNumbers.size() - 1);
     }
 
-    // helper method to build a balanced BST recursively
+    // helper method to build a balanced tree
     private TreeNode buildBalBST(List<Integer> sortedNumbers, int start, int end) {
         if (start > end) {
             return null;

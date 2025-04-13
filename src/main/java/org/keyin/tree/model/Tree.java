@@ -31,7 +31,7 @@ public class Tree {
         this.treeStructure = treeStructure;
     }
 
-    // Getter and Setter - lombok not working
+    // Getter and Setter
     public Long getId() {
         return id;
     }
